@@ -10,3 +10,7 @@ export interface Product {
   description?: string;
   animal?: PetAnimal;
 }
+export interface CartItem {
+  productId: string;
+  quantity: number;
+}

@@ -1,5 +1,5 @@
-import { products } from "../src/data/products";
-import type { Product } from "../src/types/product";
+import { products } from "../data/products";
+import type { Product } from "../types";
 
 const DELAY_MS = 300;
 const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));

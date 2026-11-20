@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getProductById, getProducts } from "../products";
+import { getProductById, getProducts } from "../api/products";
 
 describe("products service", () => {
   it("returns a non-empty list", async () => {
