@@ -1,5 +1,5 @@
-export type PetCategory = "food" | "toys" | "care" | "accessories";
-export type PetAnimal = "cat" | "dog" | "bird" | "fish" | "universal";
+export type PetCategory = 'food' | 'toys' | 'care' | 'accessories';
+export type PetAnimal = 'cat' | 'dog' | 'bird' | 'fish' | 'universal';
 
 export interface Product {
   id: string;
