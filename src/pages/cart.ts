@@ -1,8 +1,40 @@
 import { getProducts } from '../api/products';
 import { calculateTotal } from '../cart/cart';
 import { cartStore } from '../cart/instance';
-import type { Product } from '../types';
+import type { CartItem, Product } from '../types';
 import { formatPrice } from '../utils/formatPrice';
+
+function createButton(label: string, ariaLabel: string, onClick: () => void): HTMLButtonElement {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.textContent = label;
+  button.setAttribute('aria-label', ariaLabel);
+  button.addEventListener('click', onClick);
+  return button;
+}
+
+function createRow(item: CartItem, product: Product): HTMLElement {
+  const row = document.createElement('li');
+
+  const text = document.createElement('span');
+  text.textContent = `${product.title} — ${formatPrice(product.price)} x ${item.quantity} = ${formatPrice(product.price * item.quantity)}`;
+
+  const minus = createButton('−', 'Уменьшить количество', () =>
+    cartStore.changeQuantity(product.id, -1),
+  );
+  minus.disabled = item.quantity <= 1;
+
+  const plus = createButton('+', 'Увеличить количество', () =>
+    cartStore.changeQuantity(product.id, 1),
+  );
+
+  const remove = createButton('Удалить', 'Удалить товар из корзины', () =>
+    cartStore.remove(product.id),
+  );
+
+  row.append(text, minus, plus, remove);
+  return row;
+}
 
 export function renderCartPage(root: HTMLElement): void {
   const container = document.createElement('section');
@@ -11,12 +43,6 @@ export function renderCartPage(root: HTMLElement): void {
 
   let products: readonly Product[] = [];
   let loaded = false;
-
-  function createRow(title: string, price: number, quantity: number): HTMLElement {
-    const row = document.createElement('li');
-    row.textContent = `${title} — ${formatPrice(price)} × ${quantity} = ${formatPrice(price * quantity)}`;
-    return row;
-  }
 
   function render(): void {
     if (!loaded) return;
@@ -32,7 +58,7 @@ export function renderCartPage(root: HTMLElement): void {
     for (const item of items) {
       const product = products.find((p) => p.id === item.productId);
       if (product) {
-        list.append(createRow(product.title, product.price, item.quantity));
+        list.append(createRow(item, product));
       }
     }
 
