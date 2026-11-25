@@ -1,4 +1,4 @@
-export type PetCategory = 'food' | 'toys' | 'care' | 'accessories';
+export type PetCategory = 'Корм' | 'Игрушки' | 'Уход' | 'Аксессуары';
 export type PetAnimal = 'cat' | 'dog' | 'bird' | 'fish' | 'universal';
 
 export interface Product {
@@ -8,7 +8,7 @@ export interface Product {
   price: number;
   image: string;
   description?: string;
-  animal?: PetAnimal;
+  animals?: PetAnimal[];
 }
 export interface CartItem {
   productId: string;

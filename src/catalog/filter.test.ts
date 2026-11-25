@@ -3,15 +3,15 @@ import { filterProducts } from './filter';
 import type { Product } from '../types';
 
 const mockProducts: Product[] = [
-  { id: '1', title: 'Cat food', category: 'food', price: 100, animal: 'cat', image: '' },
-  { id: '2', title: 'Dog food', category: 'food', price: 200, animal: 'dog', image: '' },
-  { id: '3', title: 'Cat toy', category: 'toys', price: 50, animal: 'cat', image: '' },
+  { id: '1', title: 'Cat food', category: 'Корм', price: 100, animals: ['cat'], image: '' },
+  { id: '2', title: 'Dog food', category: 'Корм', price: 200, animals: ['dog'], image: '' },
+  { id: '3', title: 'Cat toy', category: 'Игрушки', price: 50, animals: ['cat'], image: '' },
   {
     id: '4',
     title: 'Universal bowl',
-    category: 'accessories',
+    category: 'Аксессуары',
     price: 300,
-    animal: 'universal',
+    animals: [],
     image: '',
   },
 ];
@@ -34,7 +34,7 @@ describe('filterProducts', () => {
   });
 
   it('filters by specific category', () => {
-    const result = filterProducts(mockProducts, { category: 'food' });
+    const result = filterProducts(mockProducts, { category: 'Корм' });
     expect(result).toHaveLength(2);
   });
 
@@ -57,7 +57,7 @@ describe('filterProducts', () => {
   });
 
   it('category and price range work together', () => {
-    const result = filterProducts(mockProducts, { category: 'food', minPrice: 150 });
+    const result = filterProducts(mockProducts, { category: 'Корм', minPrice: 150 });
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('2');
   });
@@ -70,7 +70,7 @@ describe('filterProducts', () => {
   it('combined filters', () => {
     const result = filterProducts(mockProducts, {
       query: 'cat',
-      category: 'toys',
+      category: 'Игрушки',
       minPrice: 40,
       maxPrice: 60,
     });

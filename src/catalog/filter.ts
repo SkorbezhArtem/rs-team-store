@@ -1,6 +1,6 @@
 import type { PetAnimal, PetCategory, Product } from '../types';
 
-export type SortMode = 'default' | 'price-asc' | 'price-desc';
+export type SortMode = 'default' | 'price-asc' | 'price-desc' | 'title-asc';
 
 export interface ProductFilters {
   query?: string;
@@ -22,9 +22,9 @@ export function filterProducts(source: readonly Product[], filters: ProductFilte
 
     const matchesAnimal =
       !filters.animal ||
-      !product.animal ||
-      product.animal === 'universal' ||
-      product.animal === filters.animal;
+      !product.animals ||
+      product.animals.length === 0 ||
+      product.animals.includes(filters.animal);
 
     const matchesMinPrice = filters.minPrice === undefined || product.price >= filters.minPrice;
     const matchesMaxPrice = filters.maxPrice === undefined || product.price <= filters.maxPrice;
@@ -37,6 +37,9 @@ export function filterProducts(source: readonly Product[], filters: ProductFilte
   }
   if (filters.sort === 'price-desc') {
     return filtered.toSorted((a, b) => b.price - a.price);
+  }
+  if (filters.sort === 'title-asc') {
+    return filtered.toSorted((a, b) => a.title.localeCompare(b.title));
   }
 
   return filtered;
