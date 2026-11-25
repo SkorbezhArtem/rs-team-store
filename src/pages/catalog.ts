@@ -15,10 +15,10 @@ export function renderCatalogPage(root: HTMLElement): void {
 
   const categories = [
     { value: 'all', label: 'Все категории' },
-    { value: 'food', label: 'Корм' },
-    { value: 'toys', label: 'Игрушки' },
-    { value: 'care', label: 'Уход' },
-    { value: 'accessories', label: 'Аксессуары' },
+    { value: 'Корм', label: 'Корм' },
+    { value: 'Игрушки', label: 'Игрушки' },
+    { value: 'Уход', label: 'Уход' },
+    { value: 'Аксессуары', label: 'Аксессуары' },
   ];
 
   for (const cat of categories) {
