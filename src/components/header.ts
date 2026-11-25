@@ -1,3 +1,5 @@
+import { asset } from '../utils/asset';
+
 const links = [
   { href: '#/about', label: 'О нас' },
   { href: '#/catalog', label: 'Каталог' },
@@ -16,7 +18,7 @@ export function createHeader(): HTMLElement {
   logoLink.className = 'logo-link';
 
   const logoImg = document.createElement('img');
-  logoImg.src = '/logo.png';
+  logoImg.src = asset('/logo.png');
   logoImg.alt = 'Логотип';
   logoImg.classList.add('logo');
 

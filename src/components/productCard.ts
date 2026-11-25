@@ -1,13 +1,14 @@
 import type { Product } from '../types';
 import { formatPrice } from '../utils/formatPrice';
 import { cartStore } from '../cart/instance';
+import { asset } from '../utils/asset';
 
 export function createProductCard(product: Product): HTMLElement {
   const card = document.createElement('article');
   card.className = 'product-card';
 
   const img = document.createElement('img');
-  img.src = product.image || 'https://placehold.co/300x300?text=No+Image';
+  img.src = asset(product.image) || 'https://placehold.co/300x300?text=No+Image';
   img.alt = product.title;
   img.loading = 'lazy';
 

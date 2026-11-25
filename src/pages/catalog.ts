@@ -1,5 +1,6 @@
 import { getProducts } from '../api/products';
 import { createProductCard } from '../components/productCard';
+import { asset } from '../utils/asset';
 
 export function renderCatalogPage(root: HTMLElement): void {
   root.replaceChildren();
@@ -19,7 +20,7 @@ export function renderCatalogPage(root: HTMLElement): void {
     const btn = document.createElement('button');
     btn.className = 'animal-filter-btn';
     const iconHtml = animal.icon.includes('.')
-      ? `<img src="${animal.icon}" alt="${animal.label}" width="40" height="40">`
+      ? `<img src="${asset(animal.icon)}" alt="${animal.label}" width="40" height="40">`
       : animal.icon;
 
     btn.innerHTML = `<span class="icon">${iconHtml}</span> <span>${animal.label}</span>`;
