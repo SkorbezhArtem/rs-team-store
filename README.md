@@ -15,3 +15,5 @@ Team project: online store (RS School).
 - The cart is not reset when the user switches pages.
 - Filtering never mutates the original products array.
 - The total price is calculated only in `calculateTotal`; the logic is not duplicated.
+
+Live demo: https://skorbezhartem.github.io/rs-team-store/
