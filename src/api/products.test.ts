@@ -17,9 +17,13 @@ describe('products service', () => {
     }
   });
 
-  it('animal is optional', async () => {
+  it('animals is an optional array of strings', async () => {
     for (const p of await getProducts()) {
-      expect(p.animal === undefined || typeof p.animal === 'string').toBe(true);
+      expect(p.animals === undefined || Array.isArray(p.animals)).toBe(true);
+
+      if (p.animals) {
+        expect(p.animals.every((a) => typeof a === 'string')).toBe(true);
+      }
     }
   });
 
