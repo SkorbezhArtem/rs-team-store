@@ -6,14 +6,14 @@ const products: Product[] = [
   {
     id: 'pet-1',
     title: 'Cat food',
-    category: 'food',
+    category: 'Корм',
     price: 100,
     image: '',
   },
   {
     id: 'pet-2',
     title: 'Dog toy',
-    category: 'toys',
+    category: 'Игрушки',
     price: 50,
     image: '',
   },
