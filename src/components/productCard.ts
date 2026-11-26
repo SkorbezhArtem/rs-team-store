@@ -1,19 +1,24 @@
 import type { Product } from '../types';
 import { formatPrice } from '../utils/formatPrice';
-import { cartStore } from '../cart/instance';
-import { asset } from '../utils/asset';
+import { productImageSrc } from '../utils/productImage';
+import { createAddToCartButton } from './addToCartButton';
 
 export function createProductCard(product: Product): HTMLElement {
   const card = document.createElement('article');
   card.className = 'product-card';
 
   const img = document.createElement('img');
-  img.src = asset(product.image) || 'https://placehold.co/300x300?text=No+Image';
+  img.src = productImageSrc(product.image);
   img.alt = product.title;
   img.loading = 'lazy';
 
   const title = document.createElement('h3');
   title.textContent = product.title;
+
+  const link = document.createElement('a');
+  link.className = 'product-card-link';
+  link.href = `#/product/${encodeURIComponent(product.id)}`;
+  link.append(img, title);
 
   const category = document.createElement('p');
   category.className = 'product-category';
@@ -23,22 +28,8 @@ export function createProductCard(product: Product): HTMLElement {
   price.className = 'product-price';
   price.textContent = formatPrice(product.price);
 
-  const button = document.createElement('button');
-  button.className = 'add-to-cart-btn';
-  button.textContent = 'В корзину';
+  const button = createAddToCartButton(product.id);
 
-  button.addEventListener('click', () => {
-    cartStore.add(product.id);
-
-    button.textContent = 'Добавлено!';
-    button.classList.add('added');
-
-    setTimeout(() => {
-      button.textContent = 'В корзину';
-      button.classList.remove('added');
-    }, 1000);
-  });
-
-  card.append(img, title, category, price, button);
+  card.append(link, category, price, button);
   return card;
 }
