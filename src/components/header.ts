@@ -71,9 +71,11 @@ export function createHeader(): HTMLElement {
   const cartLink = document.createElement('a');
   cartLink.href = '#/cart';
   cartLink.className = 'header-cart-link';
+  cartLink.setAttribute('aria-label', 'Корзина');
   cartLink.innerHTML = CART_ICON_SVG;
 
   const cartLabel = document.createElement('span');
+  cartLabel.className = 'header-cart-label';
   cartLabel.textContent = 'Корзина';
 
   const badge = document.createElement('span');

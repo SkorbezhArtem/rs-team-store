@@ -174,8 +174,14 @@
   }
 
   .header-cart-link {
-    padding: 6px 10px;
+    padding: 8px 10px;
     gap: 6px;
     font-size: 0.825rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-cart-label {
+    display: none;
   }
 }
