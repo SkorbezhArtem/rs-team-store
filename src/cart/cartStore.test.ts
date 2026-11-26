@@ -109,4 +109,38 @@ describe('createCartStore', () => {
     expect(() => store.add('pet-1')).not.toThrow();
     expect(store.getItems()).toEqual([{ productId: 'pet-1', quantity: 1 }]);
   });
+  it('clears all items from the cart and updates storage', () => {
+    const storage = createMemoryStorage(
+      JSON.stringify([
+        { productId: 'pet-1', quantity: 2 },
+        { productId: 'pet-2', quantity: 1 },
+      ]),
+    );
+    const store = createCartStore(storage);
+
+    store.clear();
+
+    expect(store.getItems()).toEqual([]);
+    expect(storage.data.get('cart')).toBe(JSON.stringify([]));
+  });
+
+  it('notifies subscribers when the cart is cleared', () => {
+    const storage = createMemoryStorage(JSON.stringify([{ productId: 'pet-1', quantity: 1 }]));
+    const store = createCartStore(storage);
+    const listener = vi.fn();
+
+    store.subscribe(listener);
+    store.clear();
+
+    expect(listener).toHaveBeenCalledTimes(1);
+    expect(listener).toHaveBeenCalledWith([]);
+  });
+
+  it('keeps an already empty cart empty when cleared', () => {
+    const store = createCartStore(createMemoryStorage());
+
+    store.clear();
+
+    expect(store.getItems()).toEqual([]);
+  });
 });

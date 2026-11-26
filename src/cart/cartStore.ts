@@ -52,6 +52,7 @@ export function createCartStore(storage: StorageLike) {
     changeQuantity: (productId: string, delta: number): void =>
       update(changeQuantity(items, productId, delta)),
     remove: (productId: string): void => update(removeFromCart(items, productId)),
+    clear: (): void => update([]),
     subscribe(listener: Listener): () => void {
       listeners.add(listener);
       return () => {

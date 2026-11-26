@@ -65,7 +65,9 @@ export function renderCartPage(root: HTMLElement): void {
     const total = document.createElement('p');
     total.textContent = `Итого: ${formatPrice(calculateTotal(items, products))}`;
 
-    container.replaceChildren(list, total);
+    const clear = createButton('Очистить корзину', 'Очистить корзину', () => cartStore.clear());
+
+    container.replaceChildren(list, total, clear);
   }
 
   const unsubscribe = cartStore.subscribe(() => {
