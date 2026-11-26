@@ -49,16 +49,19 @@ export function renderAboutPage(root: HTMLElement): void {
 
   const features = [
     {
+      href: '#/catalog',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
       title: 'Каталог товаров',
       text: 'Товары для разных питомцев в четырех категориях с ценами в BYN и быстрым добавлением в заказ.',
     },
     {
+      href: '#/catalog',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="4" x2="14" y2="4"></line><line x1="10" y1="4" x2="3" y2="4"></line><line x1="21" y1="12" x2="12" y2="12"></line><line x1="8" y1="12" x2="3" y2="12"></line><line x1="21" y1="20" x2="16" y2="20"></line><line x1="12" y1="20" x2="3" y2="20"></line><line x1="14" y1="2" x2="14" y2="6"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="16" y1="18" x2="16" y2="22"></line></svg>`,
       title: 'Умные фильтры',
       text: 'Поиск по названию, отбор по виду питомца, категории, диапазону цен и сортировка результата.',
     },
     {
+      href: '#/cart',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>`,
       title: 'Удобная корзина',
       text: 'Управление количеством, автоматический расчет общей суммы и сохранение в localStorage.',
@@ -66,7 +69,8 @@ export function renderAboutPage(root: HTMLElement): void {
   ];
 
   for (const feat of features) {
-    const card = document.createElement('div');
+    const card = document.createElement('a');
+    card.href = feat.href;
     card.className = 'feature-card';
 
     const icon = document.createElement('div');
@@ -96,7 +100,6 @@ export function renderAboutPage(root: HTMLElement): void {
 
   const teamMembers = [
     {
-      avatarClass: 'avatar-yellow',
       githubUser: 'SkorbezhArtem',
       name: 'Артем (SkorbezhArtem)',
       github: 'https://github.com/SkorbezhArtem',
@@ -105,7 +108,6 @@ export function renderAboutPage(root: HTMLElement): void {
         'Настроил сборку проекта, CI/CD-пайплайны и деплой на GitHub Pages. Разработал стор и логику корзины, реализовал hash-роутинг, страницу корзины и адаптивную верстку.',
     },
     {
-      avatarClass: 'avatar-black',
       githubUser: 'KirillOlesik',
       name: 'Кирилл (KirillOlesik)',
       github: 'https://github.com/KirillOlesik',
